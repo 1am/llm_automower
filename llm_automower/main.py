@@ -5,23 +5,16 @@ the forecast data.
 from datetime import datetime, timedelta
 from enum import Enum
 import json
-import os
 import sys
 
 import asyncio
 from dotenv import load_dotenv
 
-import llm_wrapper as llm_wrapper
-import mower_wrapper as mower_wrapper
-import parse_args as parse_args
+import llm_wrapper
+import mower_wrapper
+import parse_args
 
 load_dotenv()
-
-# LAT = os.getenv('LAT')
-# LON = os.getenv('LON')
-# OPENAI_API_KEY = os.getenv('OPENAI_API_KEY')
-# AUTOMOWER_APP_KEY = os.getenv('AUTOMOWER_APP_KEY')
-# AUTOMOWER_APP_SECRET = os.getenv('AUTOMOWER_APP_SECRET')
 
 class AppError(Enum):
     """Application error codes"""
@@ -38,7 +31,7 @@ async def main():
     mw = mower_wrapper.MowerWrapper(args.automower_api_key, args.automower_api_secret)
     print('Connecting to Automower API')
     status, mower_id = await mw.connect()
-    print(f'Selected mower {status.system.name} {mower_id}. Battery {status.battery.battery_percent}%')
+    print(f'Selected {status.system.name} {mower_id}. Battery {status.battery.battery_percent}%')
     llm = llm_wrapper.LLMWrapper()
     lat = args.lat
     lon = args.lon
