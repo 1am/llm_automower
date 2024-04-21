@@ -1,0 +1,34 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Launch app",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "${workspaceFolder}/llm_automower/main.py",
+            "console": "integratedTerminal",
+            "env": {
+                "PYTHONPATH": "${PYTHONPATH}:${workspaceFolder}/llm_ls"
+            },
+            "args": [
+                "--output-file", "output.txt",
+            ]
+        },
+        {
+            "name": "Debug tests",
+            "type": "debugpy",
+            "request": "launch",
+            "module": "unittest",
+            "args": [
+              "discover",
+              "-s", "test/unit_tests"
+            ],
+            "env": {
+              "PYTHONPATH": "${PYTHONPATH}:${workspaceFolder}/monitor"
+            }
+          },
+    ]
+}
